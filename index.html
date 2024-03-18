@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> FORM </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h3> QUERY FORM </h3>
+                <p class="blue-text">Just answer a few questions<br> 
+so that we can personalize the right experience for you.</p>
+                <div class="card">
+                    <h5 class="text-center mb-4">Request Form</h5>
+                    <form class="form-card" id="product">
+                        <div class="form-row">
+                            <div class="form-group col-md-6"> 
+                                <label class="form-control-label">First name
+<span class="text-danger"> *</span></label> 
+                                <input type="text" class="form-control" id="fname"
+ name="fname" placeholder="Enter your first name" required> 
+                            </div>
+                            <div class="form-group col-md-6"> 
+                                <label class="form-control-label">Last name
+<span class="text-danger"> *</span></label> 
+                                <input type="text" class="form-control" id="lname" 
+name="lname" placeholder="Enter your last name" required> 
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6"> 
+                                <label class="form-control-label">Business email
+<span class="text-danger"> *</span></label> 
+                                <input type="email" class="form-control" id="email"
+name="email" placeholder="Enter your email" required> 
+                            </div>
+                            <div class="form-group col-md-6"> 
+                                <label class="form-control-label">Phone number
+<span class="text-danger"> *</span></label> 
+                                <input type="tel" class="form-control" id="mob"
+ name="mob" placeholder="Enter your phone number" required> 
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12"> 
+                                <label class="form-control-label">Job title
+<span class="text-danger"> *</span></label> 
+                                <input type="text" class="form-control" id="job"
+ name="job" placeholder="Enter your job title" required> 
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12"> 
+                                <label class="form-control-label">
+What would you be using Query for?<span class="text-danger"> *</span></label> 
+                                <input type="text" class="form-control" id="ans"
+ name="ans" placeholder="Enter your answer" required> 
+                            </div>
+                        </div>
+                        <div class="form-row justify-content-end">
+                            <div class="form-group col-md-6"> 
+                                <button type="button" onclick="submitForm()" class="btn btn-block btn-primary">Request Send </button> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            var formData = new FormData(document.getElementById("product"));
+            fetch('https://script.google.com/macros/s/AKfycbyeQvDDvkmWdYGUf8BTRQL0hmjV_-iWzj_tVpjugEBV61-ds5_eUS8bcUCT5HJzaBPr/exec', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    Swal.fire({
+                        title: 'Thank you!',
+                        text: 'Your form has been submitted successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    // Clear form inputs
+                    document.getElementById("product").reset();
+                } else {
+                    // Show error message
+                    Swal.fire({
+                        title: 'Oops...',
+                        text: 'Something went wrong! Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            })
+            .catch(error => {
+                // Show error message
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Something went wrong! Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
